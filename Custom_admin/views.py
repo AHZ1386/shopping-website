@@ -1,4 +1,4 @@
-from Store.models import Order, Product
+from Store.models import Order, Product, Category, Brand
 from django.shortcuts import render
 from  Account.models import User
 from django.shortcuts import redirect
@@ -64,3 +64,15 @@ class OrderUpdateView(UpdateView):
     form_class = forms.OrderUpdateForm
     template_name = 'Custom_admin/Order/order_update.html'
     success_url = '/custom-admin/orders/'
+
+class BrandCreateView(CreateView):
+    model = Brand
+    form_class = forms.BrandCreateForm
+    template_name = 'Custom_admin/Product/brand_create.html'
+    success_url = '/custom-admin/'
+
+class CategoryCreateView(CreateView):
+    model = Category
+    form_class = forms.CategoryCreateForm
+    template_name = 'Custom_admin/Product/category_create.html'
+    success_url = '/custom-admin/'
