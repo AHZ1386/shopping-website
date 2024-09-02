@@ -1,46 +1,61 @@
 {% extends 'base.html' %}
-
 {% block main %}
-    {% for product in products %}
-        <div class="col mb-5">
-            <div class="card h-100">
-                <!-- Product image-->
-                <img class="card-img-top" src="{{ product.image_1.url }}" alt="{{ product.title }}">
-                <!-- Product details-->
-                <div class="card-body p-4">
-                    <div class="text-center">
-                        <!-- Product name-->
-                        <a href="{% url 'store:product_detail' product.slug %}">
-                            <h5 class="fw-bolder">{{ product.title }}</h5>
-                        </a>
-                        <!-- Product description and price-->
-                        {{ product.description|truncatewords:15 }}
-                        {{ product.price }}:ريال
-                    </div>
-                </div>
-                <!-- Product actions-->
-                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                    {% if product not in user.shopping_cart.all %}
-                        <div class="text-center">
-                            <a class="btn btn-outline-dark mt-auto" href="{% url 'add_to_cart' product.id %}">افزودن به سبد خرید</a>
-                        </div>
-                    {% else %}
-                        <div class="text-center">
-                            <a class="btn btn-outline-dark mt-auto" href="{% url 'remove_from_cart' product.id %}">خذف از سبد خرید</a>
-                        </div>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-    {% endfor %}
+	<div class="checkout-steps">
+                    		    <div class="clearfix">
+                    		    	<div class="step done">
+                    		    	    <div class="step-badge"><i class="icon-ok"></i></div>
+                    		    	    <a href="checkout-step-1.html">سبد خريد</a>
+                    		    	</div>
+                    		    	<div class="step done">
+                                        <div class="step-badge"><i class="icon-ok"></i></div>
+                                        <a href="checkout-step-2.html">آدرس ارسال</a>
+                                    </div>
+                    		    	<div class="step done">
+                    		    	    <div class="step-badge"><i class="icon-ok"></i></div>
+                    		    	    <a href="checkout-step-3.html">شيوه پرداخت</a>
+                    		    	</div>
+                    		    	<div class="step active">
+                    		    	    <div class="step-badge">4</div>
+                    		    	    تاييد و پرداخت
+                    		    	</div>
+                    		    </div>
+                    		</div>
+<table class="table table-items">
+							    <thead>
+							    	<tr>
+							    		<th colspan="2">آيتم</th>
+							    		<th><div class="align-center">تعداد</div></th>
+							    		<th><div class="align-right">قيمت</div></th>
+							    	</tr>
+							    </thead>
+							    <tbody>
+                                {% for product in products %}
+                                	<tr>
+							        	<td class="image"><img src="images/dummy/cart-items/cart-item-5.jpg" alt="" width="124" height="124"></td>
+							        	<td class="desc">{{ product.title }}</td>
 
-    <!-- Total Price Section -->
-    <div class="text-center mt-4">
-        <h4>مجموع نهایی: {{ total_price }}:ريال</h4>
-    </div>
+							        	<td class="price">
+							        	    ریال {{ product.price }}
+							        	</td>
+							        </tr>
+                                {% endfor %}
 
-    <!-- Checkout Button Section -->
-    <div class="text-center mt-4">
-        <a class="btn btn-primary" href="{% url 'go-to-getway' %}">تایید سبد خرید و پرداخت</a>
-    </div>
+
+							        							        <tr>
+							        	<td colspan="2" rowspan="2">
+							        	    &nbsp;
+							        	</td>
+							        	<td class="stronger">هزينه ارسال :</td>
+							        	<td class="stronger"><div class="align-right">$4.99</div></td>
+							        </tr>
+							        <tr>
+							        	<td class="stronger">جمع کل :</td>
+							        	<td class="stronger"><div class="size-16 align-right">{{ total_price }}</div></td>
+							        </tr>
+							    </tbody>
+							</table>
+<p class="right-align">
+							    <a href="index.html" class="btn btn-primary higher bold">تاييد و پرداخت</a>
+							</p>
+
 {% endblock %}

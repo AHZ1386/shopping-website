@@ -12,27 +12,27 @@ ORDER_STATUS_CHOICES = (
     ('d','تحویل پست داده شده'),
     ('do','تحویل مشتری داده شد'),)
 class Category(models.Model):
-    name = models.CharField(max_length=100, null=True)
-    image = models.ImageField(upload_to='Product', null=True)
-    slug = models.SlugField(max_length=50, null=True)
+    name = models.CharField(max_length=250, help_text='نام',default='متفرقه',null=True)
+    slug = models.SlugField(max_length=250, unique=True, help_text='اسلاگ')
+    image = models.ImageField(upload_to='Product/category', null=True)
 
     def __str__(self):
         return self.name
 
 
 class Brand(models.Model):
-    name = models.CharField(max_length=250)
-    slug = models.SlugField(max_length=250,unique=True)
+    name = models.CharField(max_length=250,help_text='نام' ,null=True)
+    slug = models.SlugField(max_length=250,unique=True,help_text='اسلاگ')
     image = models.ImageField(upload_to='Product/Brand', null=True)
 class Product(models.Model):
     title = models.CharField(max_length=100, null=True,help_text='نام')
     description = models.TextField(null=True,help_text='توضیحات')
     price = models.IntegerField(null=True,help_text='قیمت')
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, related_name='cat',help_text='دسته بندی')
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, related_name='cat',help_text='دسته بندی',blank=True)
     image_1 = models.ImageField(upload_to='Product', null=True,help_text='تصویر 1')
     image_2 = models.ImageField(upload_to='Product', null=True,help_text='تصویر 2')
     image_3 = models.ImageField(upload_to='Product', null=True,help_text='تصویر 3')
-    Brand = models.ForeignKey(Brand, on_delete=models.CASCADE,null=True, related_name='brand',help_text='برند')
+    Brand = models.ForeignKey(Brand, on_delete=models.CASCADE,null=True, related_name='brand',help_text='برند',blank=True)
     slug = models.SlugField(max_length=50, null=True,help_text='اسلاگ',allow_unicode=True)
     quantity = models.IntegerField(help_text='تعداد در انبار', null=True)
 

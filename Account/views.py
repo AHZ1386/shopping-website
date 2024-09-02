@@ -114,15 +114,13 @@ def login_view(request):
 
             user = authenticate(phone_number=str(phone_number), password=password)
             if user is not None:
-                login(request, user)  # اینجا دومین پارامتر را به عنوان کاربر ارسال می‌کنیم
-                return HttpResponseRedirect('/')
+                login(request, user)
+                return HttpResponseRedirect('/')  # ری‌دایرکت به صفحه اصلی
 
-        else:
-            form = LoginForm()
-
-        return render(request, 'Account/login.html', {'form': form})
     else:
         form = LoginForm()
+
+    return render(request, 'Account/login.html', {'form': form})
 
     return render(request, 'Account/login.html', {'form': form})
 @login_required()
