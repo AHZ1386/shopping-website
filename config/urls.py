@@ -27,6 +27,7 @@ urlpatterns = [
                   # Store
     path('product/', include('Store.urls')),
     path('category-list/', Store.CategoryListView.as_view(), name='category_list'),
+    path('category-detail/<str:slug>/', Store.CategoryDetailViwe.as_view(), name='category_detail'),
 
                   #Custom Admin
     path('custom-admin/',include('Custom_admin.urls')),

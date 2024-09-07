@@ -1,49 +1,35 @@
-{% extends "base.html" %}
-{% block text %}
-    دسته بندی ها
-{% endblock text %}
+{% extends 'base.html' %}
 {% block main %}
 
 
+                <div class="row popup-products blocks-spacer">
 
-    {% for cat in category %}
-        <div class="col mb-5">
-            <div class="card h-100">
-                <!-- cat image-->
-                <img class="card-img-top" src="{{ cat.image.url }}" alt="{{ cat.name }}">
-                <!-- cat details-->
-                <div class="card-body p-4">
-                    <div class="text-center">
-                        <!-- cat name-->
-                        <a href="{% url 'store:category_detail' cat.slug %}">
-                            <h5 class="fw-bolder">{{ cat.title }}</h5>
-                        </a>
-                        <!-- cat reviews-->
-                        <!-- <div class="d-flex justify-content-center small text-warning mb-2">
-                                <div class="bi-star-fill"></div>
-                                <div class="bi-star-fill"></div>
-                                <div class="bi-star-fill"></div>
-                                <div class="bi-star-fill"></div>
-                                <div class="bi-star-fill"></div>
-                            </div> -->
-                        <!-- cat price-->
 
-                        <h3>{{ cat.name }}</h3>
+                {% for cat in category %}
+
+
+
+                    <div class="span3">
+                        <div class="product">
+                            <div class="product-img">
+                                <div class="picture">
+                                    <img src="{{ cat.image.url }}" alt="{{ cat.title }}" width="540" height="374">
+                                    <div class="img-overlay">
+                                        <a href="{% url 'category_detail' cat.slug %}" class="btn more btn-primary">توضیحات بیشتر</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="main-titles no-margin">
+                                <h4 class="title">{{ cat.name }}</h4>
+                            </div>
+
+                        </div>
                     </div>
-                </div>
-                <!-- cat actions-->
-                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 
+                {% endfor %}
 
-                    <div class="text-center"><a class="btn btn-outline-dark mt-auto"
-                                                href="{% url 'store:category_detail' cat.slug %}">دیدن دسته بندی</a>
-                    </div>
 
 
                 </div>
-            </div>
-        </div>
-    {% endfor %}
 
-
-{% endblock main %}
+{% endblock %}
