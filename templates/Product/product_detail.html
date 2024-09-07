@@ -55,6 +55,7 @@
                     </div>
                     <div class="product-description">
                         <p>{{ product.description }}</p>
+                    {% if product.quantity > 0 %}
                         {% if user.is_authenticated != True %}
                     {% else %}
                          {% if product not in user.shopping_cart.all %}
@@ -64,7 +65,7 @@
 
                         {% endif %}
                         {% endif %}
-
+                    {% endif %}
                     
                     </div>
 

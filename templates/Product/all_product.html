@@ -1,56 +1,47 @@
 {% extends 'base.html' %}
-
-{% block text %}
-    تمام محصولات
-{% endblock %}
-
 {% block main %}
-    {% for product in product %}
-        <div class="col mb-5">
-            <div class="card h-100">
-                <!-- Product image-->
-                <img class="card-img-top" src="{{ product.image_1.url }}" alt="{{ product.title }}">
-                <!-- Product details-->
-                <div class="card-body p-4">
-                    <div class="text-center">
-                        <!-- Product name-->
-                        <a href="{% url 'store:product_detail' product.slug %}"><h5
-                                class="fw-bolder">{{ product.title }}</h5></a>
-                        <!-- Product reviews-->
-                        <!-- <div class="d-flex justify-content-center small text-warning mb-2">
-                            <div class="bi-star-fill"></div>
-                            <div class="bi-star-fill"></div>
-                            <div class="bi-star-fill"></div>
-                            <div class="bi-star-fill"></div>
-                            <div class="bi-star-fill"></div>
-                        </div> -->
-                        <!-- Product price-->
-                        {{ product.description|truncatewords:15 }}
-                        {{ product.price }}:ريال
-                    </div>
-                </div>
-                <!-- Product actions-->
-                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 
-                    {% if user.is_authenticated != True %}
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto"
-                                                    href="{% url 'store:product_detail' product.slug %}">دیدن محصول</a>
-                        </div>
 
-                    {% else %}
-                        {% if product not in user.shopping_cart.all %}
-                            <div class="text-center"><a class="btn btn-outline-dark mt-auto"
-                                                        href="{% url 'add_to_cart' product.id %}">افزودن به سبد خرید</a>
+                <div class="row popup-products blocks-spacer">
+
+
+                {% for product in Product %}
+
+
+
+                    <div class="span3">
+                        <div class="product">
+                            <div class="product-img">
+                                <div class="picture">
+                                    <img src="{{ product.image_1.url }}" alt="" width="540" height="374">
+                                    <div class="img-overlay">
+                                        <a href="{% url 'store:product_detail' product.slug %}" class="btn more btn-primary">توضیحات بیشتر</a>
+                                        {% if user.is_authenticated == True %}
+                                        <a href="{% url 'add_to_cart' product.pk %}" class="btn buy btn-danger">اضافه به سبد خرید</a>
+                                            {% else %}
+                                        {% endif %}
+                                    </div>
+                                </div>
                             </div>
-                        {% else %}
-                            <div class="text-center"><a class="btn btn-outline-dark mt-auto"
-                                                        href="{% url 'remove_from_cart' product.id %}">خذف از سبد
-                                خرید</a></div>
-                        {% endif %}
-                    {% endif %}
+                            <div class="main-titles no-margin">
+                                <h4 class="title">{{ product.title }}</h4>
+                                <h5 class="no-margin">{{ product.price }}</h5>
+                            </div>
+                            <p class="desc">توضیحاتی که در مورد محصول لازم است را در اینجا مینویسید</p>
+                            <p class="center-align stars">
+                                <span class="icon-star stars-clr"></span>
+                                <span class="icon-star stars-clr"></span>
+                                <span class="icon-star stars-clr"></span>
+                                <span class="icon-star stars-clr"></span>
+                                <span class="icon-star stars-clr"></span>
+
+                            </p>
+                        </div>
+                    </div>
+                {% endfor %}
+
+
+
                 </div>
-            </div>
-        </div>
-    {% endfor %}
 
 {% endblock %}

@@ -165,7 +165,7 @@ def change_password(request):
     return render(request,template_name='Account/chang_password.html',context={'form':form})
 
 @login_required()
-def logout(request):
+def logo_out(request):
     logout(request)
     messages.success(request,'با موفقیت از اکانت خارج شدید')
     return HttpResponseRedirect('/')

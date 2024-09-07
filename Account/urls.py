@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import user_cart, profile, login_view, UserProfileUpdateView,signup,register,user_orders,change_password,logout
+from .views import user_cart, profile, login_view, UserProfileUpdateView,signup,register,user_orders,change_password,logo_out
 
 app_name = 'Account'
 
@@ -14,5 +14,5 @@ urlpatterns = [
     path('shopping-cart/', user_cart, name='shopping-cart'),
     path('orders/', user_orders, name='orders'),
     path('change-password/', change_password, name='change_password'),
-    path('logout/',logout,name='logout')
+    path('logout/',logo_out,name='logout')
 ]

@@ -22,7 +22,7 @@ class Category(models.Model):
 
 class Brand(models.Model):
     name = models.CharField(max_length=250,help_text='نام' ,null=True)
-    slug = models.SlugField(max_length=250,unique=True,help_text='اسلاگ')
+    slug = models.SlugField(max_length=250,unique=True,help_text='اسلاگ',allow_unicode=True)
     image = models.ImageField(upload_to='Product/Brand', null=True)
 class Product(models.Model):
     title = models.CharField(max_length=100, null=True,help_text='نام')

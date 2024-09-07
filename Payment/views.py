@@ -45,9 +45,9 @@ def go_to_gateway_view(request):
                     # هدایت کاربر به درگاه بانک
                     return bank.redirect_gateway()
 
-                except AZBankGatewaysException as e:
-                    logging.critical(e)
-                    HttpResponse("")
+                except AZBankGatewaysException as Erorr:
+                    return Erorr
+
 
 
             else:
@@ -81,6 +81,8 @@ def callback_gateway_view(request):
         for item in user.shopping_cart.all():
             order.products.add(item)
             item.quantity -=1
+            item.save()
+
         user.shopping_cart.clear()
 
         # پرداخت با موفقیت انجام پذیرفته است و بانک تایید کرده است.

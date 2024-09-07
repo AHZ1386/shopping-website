@@ -24,5 +24,5 @@ class CategoryListView(ListView):
 class AllProductsView(ListView):
     model = Product
     paginate_by = 10
-    template_name = 'shop.html'
+    template_name = 'Product/all_product.html'
     context_object_name = 'Product'
