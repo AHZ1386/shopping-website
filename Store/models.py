@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models import Sum
+from django_jalali.db import models as jalali_models
 
 ORDER_STATUS_CHOICES = (
     # Awaiting confirmation
@@ -45,4 +46,4 @@ class Order(models.Model):
     products = models.ManyToManyField(Product, related_name='products')
     status = models.CharField(max_length=2,choices=ORDER_STATUS_CHOICES)
     total_price = models.IntegerField(null=True,blank=True)
-    created_at = models.DateTimeField(auto_now_add=True,null=True)
+    created_at = jalali_models.models.DateTimeField(auto_now_add=True,null=True)
