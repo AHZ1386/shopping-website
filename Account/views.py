@@ -35,6 +35,7 @@ def signup(request):
         form = UserCreateForm(request.POST)
         if form.is_valid():
             user = form.save()
+            user.phone_number = str(form.cleaned_data['phone_number']).zfill(11)
             user.registered = False
             user.save()
             login(request, user)

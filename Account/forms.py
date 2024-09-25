@@ -16,7 +16,7 @@ class UserCreateForm(UserCreationForm):
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['phone_number', 'first_name','last_name','address',]
+        fields = [ 'first_name','last_name','address',]
 
 
 class OtpForm(forms.ModelForm):
