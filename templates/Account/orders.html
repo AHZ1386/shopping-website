@@ -38,7 +38,21 @@
                     <tr>
                         <td>{{ order.pk }}</td>
                         <td>{{ order.total_price }}:ريال</td>
-                        <td>در حال پردازش</td>
+                        {% if order.status == "aw" %}
+                                            	<td style="direction: ltr;text-align: right">در انتظار تایید</td>
+                                            {% endif %}
+                                            {% if order.status == "d" %}
+                                            	<td style="direction: ltr;text-align: right">تحویل پست داده شد</td>
+                                            {% endif %}
+                                            {% if order.status == "do" %}
+                                            	<td style="direction: ltr;text-align: right">تحویل مشتری داده شد</td>
+                                            {% endif %}
+                                            {% if order.status == "r" %}
+                                            	<td style="direction: ltr;text-align: right">اماده ارسال از انبار</td>
+                                            {% endif %}
+                                            {% if order.status == "p" %}
+                                            	<td style="direction: ltr;text-align: right">درحال پردازش</td>
+                                            {% endif %}
                     </tr>
                 {% endfor %}
             </tbody>

@@ -15,5 +15,6 @@ urlpatterns = [
     path('brand-create/', views.BrandCreateView.as_view(), name='brand_create'),
     path('brands/',views.BrandListView.as_view(), name='brands'),
     path('categorys/',views.CategoryListView.as_view(), name='categorys'),
-
+    # path('order-detail/<int:pk>/', views.OrderDetailView.as_view(), name='order_detail'),
+    path('order-detail/<int:pk>/', views.order_detail, name='order_detail'),
 ]

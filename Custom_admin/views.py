@@ -41,7 +41,18 @@ class OrderListView(ListView):
     context_object_name = 'orders'
     paginate_by = 10
     template_name = 'Custom_admin/Order/order_list.html'
+# @method_decorator(user_passes_test(is_admin), name='dispatch')
+# class OrderDetailView(DetailView):
+#     model = Order
+#     context_object_name = 'order'
+#     template_name = 'Custom_admin/Order/order_detail.html'
 
+def order_detail(request, pk):
+    context = {
+        'order': Order.objects.get(pk=pk)
+    }
+    print(Order.objects.get(pk=pk).products.count())
+    return render(request, 'Custom_admin/Order/order_detail.html',context)
 @method_decorator(user_passes_test(is_admin), name='dispatch')
 class UserListView(ListView):
     model = User
